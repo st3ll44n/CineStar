@@ -1,9 +1,11 @@
 create table CineStar;
 
+use CineStar;
+
 create table filme(
 id_filme int primary key auto_increment,
 nome_filme varchar(250) not null,
-duracao time, 
+duracao int, -- Tempo em minutos
 ano_lancamento year(4),
 diretor varchar(250),
 classificacao decimal(6,2), 
@@ -43,33 +45,49 @@ nome_cliente varchar(250) not null,
 telefone int(15) not null,
 email varchar(250)
 );
-
 -- Inserir filmes
-INSERT INTO Filme (ID_Filme, Titulo, Diretor, Duracao, Classificacao, Genero) 
+INSERT INTO filme (id_filme, nome_filme, diretor, duracao, classificacao, genero, ano_lancamento) 
 VALUES
-(1, 'O Poderoso Chefão', 'Francis Ford Coppola', 175, '18+', 'Crime'),
-(2, 'Vingadores: Ultimato', 'Anthony Russo', 181, '12+', 'Ação');
+(1, 'o poderoso chefão', 'francis ford coppola', 175, '18+', 'crime',1972),
+(2, 'vingadores: ultimato', 'anthony russo', 181, '12+', 'ação',2019),
+(3, 'matrix', 'wachowski brothers', 136, '16+', 'ficção científica',1999),
+(4, 'inception', 'christopher nolan', 148, '14+', 'ficção científica',2010),
+(5, 'harry potter e a pedra filosofal', 'chris columbus', 152, '10+', 'fantasia',2001);
+
+select * from filme;
 
 -- Inserir salas
-INSERT INTO Sala (ID_Sala, Nome_Sala, Capacidade, Equipamento)
+INSERT INTO sala (id_sala, numero_sala, capacidade, tipo_sala)
 VALUES
-(1, 'Sala 1', 150, 'Som 7.1, Projeção Digital'),
-(2, 'Sala 2', 120, 'Som 5.1, Projeção Digital');
+(1, 150, 'som 7.1'),
+(2, 120, 'som 5.1'),
+(3, 100, 'som 7.1'),
+(4, 50, 'som 7.1'),
+(5, 80, 'som 5.1');
 
 -- Inserir sessões
-INSERT INTO Sessao (ID_Sessao, ID_Filme, ID_Sala, Data_Hora)
+INSERT INTO sessao (id_sessao, id_filme, id_sala, data_sessao, horario_sessao)
 VALUES
-(1, 1, 1, '2025-02-22 18:00:00'),
-(2, 2, 2, '2025-02-22 21:00:00');
+(1, 1, 1, '2025-02-22', '18:00:00'),
+(2, 2, 2, '2025-02-22', '21:00:00'),
+(3, 3, 3, '2025-02-23', '14:00:00'),
+(4, 4, 4, '2025-02-23', '17:30:00'),
+(5, 5, 5, '2025-02-24', '19:00:00');
 
 -- Inserir clientes
-INSERT INTO Cliente (ID_Cliente, Nome, Email, Telefone)
+INSERT INTO cliente (id_cliente, nome_cliente, email, telefone)
 VALUES
-(1, 'João Silva', 'joao@email.com', '99999-9999'),
-(2, 'Maria Oliveira', 'maria@email.com', '88888-8888');
+('joão silva', 'joao@email.com', '99999-9999'),
+('maria oliveira', 'maria@email.com', '88888-8888'),
+('pedro costa', 'pedro@email.com', '77777-7777'),
+('ana santos', 'ana@email.com', '66666-6666'),
+('luana pires', 'luana@email.com', '55555-5555');
 
 -- Inserir ingressos
-INSERT INTO Ingresso (ID_Ingresso, ID_Cliente, ID_Sessao, Data_Compra, Valor)
+INSERT INTO ingresso (id_ingresso, id_cliente, id_sessao, data_compra, valor)
 VALUES
 (1, 1, 1, '2025-02-21 15:00:00', 25.00),
-(2, 2, 2, '2025-02-21 16:30:00', 30.00);
+(2, 2, 2, '2025-02-21 16:30:00', 30.00),
+(3, 3, 3, '2025-02-21 17:45:00', 28.00),
+(4, 4, 4, '2025-02-21 19:00:00', 35.00),
+(5, 5, 5, '2025-02-21 20:30:00', 40.00);
